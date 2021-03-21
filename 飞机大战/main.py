@@ -29,16 +29,22 @@ class Hero:
         keypressed = pygame.key.get_pressed()
         if keypressed[K_w] or keypressed[K_UP]:
             print("上")
-            self.y -= self.speed
+
+            if  self.y > 0:
+                self.y -= self.speed
+
         if keypressed[K_a] or keypressed[K_LEFT]:
             print("左")
-            self.x -= self.speed
+            if 0 < self.x :
+                self.x -= self.speed
         if keypressed[K_s] or keypressed[K_DOWN]:
             print("下")
-            self.y += self.speed
+            if 700 - 126 > self.y :
+                self.y += self.speed
         if keypressed[K_d] or keypressed[K_RIGHT]:
             print("右")
-            self.x += self.speed
+            if self.x < 480 - 102:
+                self.x += self.speed
         if keypressed[K_SPACE]:
             print("发射子弹")
             bullet = Bullet(self.screen, self.x, self.y)
@@ -104,7 +110,7 @@ def main():
     direns = []
     while True:
         screen.blit(background, (0, 0))
-        if 8 == random.randint(0,30):
+        if 8 == random.randint(0, 30):
             direns.append(Diren(screen))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
